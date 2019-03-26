@@ -1,6 +1,8 @@
 package com.skycloud.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.skycloud.entity.JavaBeanPerson;
+import com.skycloud.service.ExportService;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
@@ -8,13 +10,13 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -24,6 +26,28 @@ import java.util.List;
 @Controller
 @RequestMapping("/report")
 public class ReportController {
+
+
+    @RequestMapping(value = "showReport", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject showReport(@RequestParam("name") String name){
+        JSONObject resultJson = new JSONObject();
+
+        Map<String, Object> paramJson = new HashMap<String, Object>();
+
+        paramJson.put("name", name);
+
+        try {
+            ExportService.saveReport(paramJson);
+
+            resultJson.put("message", "导出成功");
+        } catch (Exception e) {
+            resultJson.put("message", "导出失败");
+            e.printStackTrace();
+        }
+
+        return resultJson;
+    }
 
     /**
      * jdbc作为数据源
