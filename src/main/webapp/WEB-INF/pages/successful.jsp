@@ -9,12 +9,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
+    <script type="text/javascript">
+        function search() {
+            alert("搜素成功");
+        }
+    </script>
 </head>
 <body>
-1111111111
+ip:<input type="text" id="ip" name="ip"/>&nbsp;&nbsp;
+实例名:<input type="text" id="ip" name="ip"/>&nbsp;&nbsp;
+类型：<select id="type" name="type">
+        <option>db2</option>
+        <option>oracle</option>
+        <option>IBP</option>
+        <option>PCFWQ</option>
+     </select>&nbsp;&nbsp;
+<button onclick="search()">搜素</button>
 <%
     System.out.println("===========");
-    /*File reportFile = new File("C:/Users/angel/Desktop/report/report8.jasper");
+    File reportFile = new File("C:/Users/angel/Desktop/report/report8.jasper");
     JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile);
     Map parameters = new HashMap();
     parameters.put("ip", "");
@@ -27,7 +40,7 @@
     exporter.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, Boolean.FALSE);
     exporter.exportReport();
     out.flush();
-    conn.close();*/
+    conn.close();
 %>
 </body>
 </html>

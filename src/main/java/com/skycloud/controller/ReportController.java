@@ -24,7 +24,7 @@ import java.util.Map;
  * @date 2019/3/22
  */
 @Controller
-@RequestMapping("/report")
+@RequestMapping("/home")
 public class ReportController {
 
 
